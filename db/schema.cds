@@ -14,3 +14,4 @@ entity Worker : cuid, managed {
     Currency     : String(3);
     salaryAmount : customAspect.AmountType;
 }
+

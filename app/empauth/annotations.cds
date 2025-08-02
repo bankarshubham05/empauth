@@ -50,6 +50,12 @@ annotate service.WorkerSet with @(
     ],
     UI.LineItem : [
         {
+            $Type : 'UI.DataFieldForAction',
+            Action : 'CatalogService.updateGender',
+            Label : 'Update Gender',
+            Inline : false,
+        },
+        {
             $Type : 'UI.DataField',
             Label : 'firstName',
             Value : firstName,

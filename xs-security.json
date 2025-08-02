@@ -19,3 +19,25 @@
   ],
   "attributes": []
 }
+
+
+{
+  "xsappname": "empauth",
+  "tenant-mode": "dedicated",
+  "scopes": [
+    { "name": "$XSAPPNAME.Manager", "description": "User Role" },
+    { "name": "$XSAPPNAME.User", "description": "Admin Role" }
+  ],
+  "role-templates": [
+    {
+      "name": "Manager",
+      "description": "Users",
+      "scope-references": ["$XSAPPNAME.Manager"]
+    },
+    {
+      "name": "User",
+      "description": "Administrators",
+      "scope-references": ["$XSAPPNAME.User"]
+    }
+  ]
+}
