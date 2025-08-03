@@ -1,6 +1,6 @@
 using { emp.db } from '../db/schema';
 
-service CatalogService @(path:'CatalogService') {
+service CatalogService @(path:'CatalogService' , requires: 'authenticated-user') {
 
 // @(restrict: [
 //                         { grant: ['WRITE'],to: 'Admin' },
@@ -16,31 +16,25 @@ service CatalogService @(path:'CatalogService') {
                 'in/Gender',
             ],
         }
-        // This will ask for the input value
-       // action updateGender(gender : String) returns String;
-
-    //If bound function and dont want the input value the dont pass parameter
-    //Hide Button for User
-    // @restrict :[{
-    //     to: ['UserRole'],
-    //     where : 'true'
-    // }]
-    // @(requires: 'UserRole')
+      
     action updateGender() returns String;
      }
 
+ @odata.singleton
+    entity FeatureControl {
+        operationHidden : Boolean;
+        operationEnabled : Boolean;
+    }
 
-  
-    
-}
-
-@odata.singleton 
-entity Configuration {
-    key ID: String;
-    isAdmin : Boolean;
-}
-
+// CRUD operations
 annotate CatalogService.WorkerSet with @(
-    UI.CreateHidden : { $edmJson: {$Not: { $Path: '/CatalogService.EntityContainer/Configuration/isAdmin'} } },
-    UI.UpdateHidden : { $edmJson: {$Not: { $Path: '/CatalogService.EntityContainer/Configuration/isAdmin'} } },
+    
+    // UI.CreateHidden: { $edmJson: { $Path: '/CatalogService.EntityContainer/FeatureControl/operationHidden' } }, 
+    // UI.UpdateHidden: { $edmJson: { $Path: '/CatalogService.EntityContainer/FeatureControl/operationHidden' } },
+    // UI.DeleteHidden: { $edmJson: { $Path: '/CatalogService.EntityContainer/FeatureControl/operationHidden' } }
 );
+
+
+}
+
+

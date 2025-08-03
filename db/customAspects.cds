@@ -1,4 +1,5 @@
 namespace emp.customAspect;
+using { sap.common.CodeList } from '@sap/cds/common';
 
 type Gender : String(1) enum{ 
     male = 'M';

@@ -1,0 +1,12 @@
+### Get Call
+http://localhost:4004/odata/v4/CatalogService/WorkerSet
+
+
+
+### Get Call
+http://localhost:4004/odata/v4/CatalogService/FeatureControl
+Authorization: Basic admin:admin
+
+### User test - Get Configuration (should return isAdmin: false)
+http://localhost:4004/odata/v4/CatalogService/FeatureControl
+Authorization: Basic admin:admin

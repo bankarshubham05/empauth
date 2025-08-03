@@ -29,13 +29,18 @@ module.exports = cds.service.impl( async(srv) =>{
     })
 
 
+  srv.on ('READ', "FeatureControl", async (req) => {
+    let operationHidden = true
 
-      srv.on('READ', 'Configuration', async req => {
-        req.reply({
-            isAdmin: req.user.is('Manager') //admin is the role, which for example is also used in @requires annotation
-        });
-    });
+    if (req.user.is('Manager')) {
+      operationHidden = false
+    }
 
+    return {
+      operationHidden: operationHidden,
+      operationEnabled: !operationHidden,
+    }
+  })
 
 
 })
